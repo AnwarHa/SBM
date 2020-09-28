@@ -1,1 +1,1 @@
-check	ALL=(ALL) NOPASSWD: /usr/sbin/arp
+check	ALL=(ALL) NOPASSWD: /usr/sbin/arp, /usr/lib/nagios/plugins/check_apt
