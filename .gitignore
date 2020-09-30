@@ -7,3 +7,4 @@
 !sshguard/
 !sudoers.d/
 !apt/
+!scripts/
