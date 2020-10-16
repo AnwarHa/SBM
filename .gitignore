@@ -8,4 +8,5 @@
 !sudoers.d/
 !apt/
 !scripts/
+!iptables/
 mrt/
