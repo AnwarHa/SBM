@@ -10,3 +10,5 @@
 !scripts/
 !iptables/
 mrt/
+!systemd/timesyncd.conf
+!ntp.conf
