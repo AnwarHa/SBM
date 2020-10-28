@@ -12,3 +12,4 @@
 mrt/
 !systemd/timesyncd.conf
 !ntp.conf
+!rc.local
