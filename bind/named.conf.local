@@ -1,8 +1,15 @@
-//
-// Do any local configuration here
-//
+zone "anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/db.anwar-haidari.sb.uclllabs.be";
+	allow-transfer{
+		193.191.176.254;
+		193.191.177.4;
+		193.191.177.198;
+		193.191.177.254;
+	};
+};
 
-// Consider adding the 1918 zones here, if they are not used in your
-// organization
-//include "/etc/bind/zones.rfc1918";
-
+zone "reda-boussabat.sb.uclllabs.be"{
+	type slave;
+	masters {193.191.177.198;};
+};
