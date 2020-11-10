@@ -9,7 +9,7 @@ zone "anwar-haidari.sb.uclllabs.be"{
 	};
 };
 
-zone "reda-boussabat.sb.uclllabs.be"{
+zone "reda-boussabat.sb.uclllabs.be."{
 	type slave;
 	masters {193.191.177.198;};
 };
