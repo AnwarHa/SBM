@@ -15,3 +15,4 @@ mrt/
 !rc.local
 !bind/
 !apache2/
+!mysql/
