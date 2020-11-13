@@ -24,3 +24,4 @@ test					IN	A	193.191.177.254
 website					IN	A	193.191.177.133	
 secure					IN	A	193.191.177.133
 supersecure				IN	A	193.191.177.133
+mx					IN	A	193.191.177.133
