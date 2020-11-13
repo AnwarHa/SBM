@@ -15,12 +15,14 @@ anwar-haidari.sb.uclllabs.be.	IN	NS	ns2.uclllabs.be.
 anwar-haidari.sb.uclllabs.be.	IN	NS	ns.anwar-haidari.sb.uclllabs.be.
 
 ; Records
+ns					IN	A	193.191.177.133
 ns.anwar-haidari.sb.uclllabs.be.	IN	A	193.191.177.133
 @					IN	A	193.191.177.133
 www					IN	A	193.191.177.133
 www1					IN	A	193.191.177.133
 www2					IN	A	193.191.177.133
-website					IN	A	193.191.177.133	
+website					IN	A	193.191.177.133
+test					IN	A	193.191.177.254	
 secure					IN	A	193.191.177.133
 supersecure				IN	A	193.191.177.133
 mx					IN	A	193.191.177.133
