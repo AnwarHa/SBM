@@ -28,7 +28,6 @@ else
 	serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
 	new_num=$(("serial_num" + 1))
 	sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
-
 	systemctl reload apache2
 	systemctl reload bind9
 fi
