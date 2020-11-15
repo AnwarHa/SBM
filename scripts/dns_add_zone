@@ -21,7 +21,7 @@ zone \"$1.anwar-haidari.sb.uclllabs.be\"{
 	type master;
 	file \"/etc/bind/zones/$1.anwar-haidari.sb.uclllabs.be\";
 	notify yes;
-};" >> /etc/bind/named.conf.local
+};" >> /etc/bind/named.conf.mrt-zones
 
 echo "$1	IN	NS	ns.anwar-haidari.sb.uclllabs.be." >> /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
 
