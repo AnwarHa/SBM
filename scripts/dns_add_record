@@ -1,3 +1,55 @@
 #! /bin/bash
 
+if [ "$1" == "-t" ];then
+while getopts t: option;do
+	case ${option}
+	in
+		 t) T=${OPTARG};;
+	esac
+done
+if [ "$T" == "A" ];then
+	#3=name, 4=IP, 5=zone
+        #dns_add_record -t A test 12.34.56.79 foobar.anwar-haidari.sb.uclllabs.be
+        echo "$3        IN      A       $4" >> /etc/bind/zones/$5
+	#increment
+        serial_num=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/$5)
+        serial_lin=$(grep -Po '\s+; Serial' /etc/bind/zones/$5)
+        serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/$5)
+        new_num=$(("$serial_num" + 1))
+        sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/$5
 
+elif [ "$T" == "CNAME" ];then
+        #dns_add_record -t CNAME wwwwww www.anwar-haidari.sb.uclllabs.be
+        echo "$3        IN      CNAME       $4" >> /etc/bind/zones/$4
+        #increment
+        serial_num=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/$4)
+        serial_lin=$(grep -Po '\s+; Serial' /etc/bind/zones/$4)
+        serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/$4)
+        new_num=$(("$serial_num" + 1))
+        sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/$4
+
+elif [ "$T" == "MX" ];then
+	#dns_add_record -t MX mail 99.88.77.66 anwar-haidari.sb.uclllabs.be
+	echo "$3        IN      A       $4" >> /etc/bind/zones/$5
+	echo "@		IN	MX	$3.$5." >> /etc/bind/zones/$5
+        #increment
+        serial_num=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/$5)
+        serial_lin=$(grep -Po '\s+; Serial' /etc/bind/zones/$5)
+        serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/$5)
+        new_num=$(("$serial_num" + 1))
+        sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/$5
+fi
+fi
+if [ -z "$T" ]; then
+        #1=name, 2=IP, 3=zone
+         #dns_add_record test 12.34.56.79 foobar.anwar-haidari.sb.uclllabs.be
+        echo "$1        IN      A       $2" >> /etc/bind/zones/$3
+        #increment
+        serial_num=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/$3)
+        serial_lin=$(grep -Po '\s+; Serial' /etc/bind/zones/$3)
+        serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/$3)
+        new_num=$(("$serial_num" + 1))
+        sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/$3
+fi
+systemctl reload bind9
+rndc reload

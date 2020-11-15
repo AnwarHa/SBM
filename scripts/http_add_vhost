@@ -1,36 +1,34 @@
 #! /bin/bash
 
+SUBDOMAIN=$(grep -Po '.{1,}(?=.anwar-haidari.sb.uclllabs.be)' <<< "$1")
 
-ZONE=$(grep -Po '.{1,}(?=.anwar-haidari.sb.uclllabs.be)' <<< "$1")
 
-
-if [ -z "$ZONE" ]; then
-	printf "Wrong domain"
+if [ -z "$SUBDOMAIN" ];
+then
+	echo "Enter correct domain name"
 else
-	touch /etc/apache2/sites-available/$ZONE.conf
-	echo -e "<VirtualHost *:80>
+	touch /etc/apache2/sites-available/$SUBDOMAIN.conf
+	echo  "<VirtualHost *:80>
 		ServerAdmin webmaster@localhost
 		ServerName $1
-		DocumentRoot /var/www/html/$ZONE
-		ErrorLog \${APACHE_LOG_DIR}/$ZONE.log
-		CustomLog \${APACHE_LOG_DIR}/$ZONE.log  combined
-	</VirtualHost>" >> /etc/apache2/sites-available/$ZONE.conf
+		DocumentRoot /var/www/html/$SUBDOMAIN
+		ErrorLog \${APACHE_LOG_DIR}/$SUBDOMAIN.log
+		CustomLog \${APACHE_LOG_DIR}/$SUBDOMAIN.log  combined
+	</VirtualHost>" >> /etc/apache2/sites-available/$SUBDOMAIN.conf
 
-	mkdir /var/www/html/$ZONE
-	touch /var/www/html/$ZONE/index.html
+	mkdir /var/www/html/$SUBDOMAIN
+	touch /var/www/html/$SUBDOMAIN/index.html
+	echo 'welcome '$SUBDOMAIN >> /var/www/html/$SUBDOMAIN/index.html
 
-	echo "<html> <p>welcome $ZONE</p> </html>" >> /var/www/html/$ZONE/index.html
+	a2ensite $SUBDOMAIN.conf
+	echo "$SUBDOMAIN	IN	A	193.191.177.133" >> /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
 
-	a2ensite $ZONE.conf
+	serial_num=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
+	serial_lin=$(grep -Po '\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
+	serial_all=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
+	new_num=$(("serial_num" + 1))
+	sed -i "s/$serial_all/$new_num$serial_lin/g" /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
 
-	echo "$ZONE	IN	A	193.191.177.133" >> /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
-
-	SERIAL_NUM=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
-	SERIAL_LIN=$(grep -Po '\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
-	SERIAL_ALL=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
-	NEW_NUM=$(("$SERIAL_NUM" + 1))
-	sed -i "s/$SERIAL_ALL/$NEW_NUM$SERIAL_LIN/g" /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
-
-	systemctl restart bind9
-	systemctl restart apache2
+	systemctl reload apache2
+	systemctl reload bind9
 fi

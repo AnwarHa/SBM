@@ -17,3 +17,4 @@ mrt/
 !apache2/
 !mysql/
 !postfix/
+bind/zones/subzone*
