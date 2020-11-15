@@ -13,3 +13,70 @@ zone "reda-boussabat.sb.uclllabs.be."{
 	type slave;
 	masters {193.191.177.198;};
 };
+
+-e 
+zone "subzoneigie1i.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneigie1i.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneeem6so.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneeem6so.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneabe1vo.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneabe1vo.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneou9ei8.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneou9ei8.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzonethe1jo.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzonethe1jo.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzonedoo0xu.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzonedoo0xu.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneohjaa2.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneohjaa2.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneaak6zo.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneaak6zo.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzonejuw8jo.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzonejuw8jo.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzonephai5l.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzonephai5l.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
+-e 
+zone "subzoneiqu2sa.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/subzoneiqu2sa.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};
