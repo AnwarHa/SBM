@@ -1,0 +1,29 @@
+if [ -z "$1" ]; then
+printf "Enter a string"
+else
+echo "\$TTL	300
+@	IN	SOA	ns.anwar-haidari.sb.uclllabs.be $1.anwar-haidari.sb.uclllabs.be.(
+			93257	; Serial
+			300	; Refresh
+			300	; Retry
+			300	; Expire
+			300)	; Negative Cashe TTL
+@	IN	NS	ns.anwar-haidari.sb.uclllabs.be.
+ns	IN	A	193.191.177.133
+@	IN	A	193.191.177.133" > /etc/bind/zones/$1.anwar-haidari.sb.uclllabs.be
+echo -e "
+zone \"$1.anwar-haidari.sb.uclllabs.be\"{
+	type master;
+	file \"/etc/bind/zones/$1.anwar-haidari.sb.uclllabs.be\";
+	notify yes;
+};" >> /etc/bind/named.conf.local
+
+echo -e "$1	IN	NS	ns.anwar-haidari.sb.uclllabs.be." >> /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
+SERIAL_NUM=$(grep -Po '\d+(?=\s+; Serial)' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be) 
+SERIAL_LIN=$(grep -Po '\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)
+SERIAL_ALL=$(grep -Po '\d+\s+; Serial' /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be)  
+NEW_NUM=$(("$SERIAL_NUM" + 1)) 
+sed -i "s/$SERIAL_ALL/$NEW_NUM$SERIAL_LIN/g" /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
+
+systemctl restart bind9
+fi
