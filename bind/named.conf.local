@@ -14,3 +14,4 @@ zone "reda-boussabat.sb.uclllabs.be."{
 	masters {193.191.177.198;};
 };
 
+include "/etc/bind/named.conf.mrt-zones";
