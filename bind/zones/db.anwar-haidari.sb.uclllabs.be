@@ -3,7 +3,7 @@
 ;
 $TTL	300
 @	IN	SOA	ns.anwar-haidari.sb.uclllabs.be. root.anwar-haidari.sb.uclllabs.be. (
-			 2020111027		; Serial
+			 2020111039		; Serial
 			 300		; Refresh
 			 300		; Retry
 			 300		; Expire
@@ -13,6 +13,9 @@ $TTL	300
 anwar-haidari.sb.uclllabs.be.	IN	NS	ns1.uclllabs.be.
 anwar-haidari.sb.uclllabs.be.	IN	NS	ns2.uclllabs.be.
 anwar-haidari.sb.uclllabs.be.	IN	NS	ns.anwar-haidari.sb.uclllabs.be.
+
+secure.anwar-haidari.sb.uclllabs.be.	IN	CAA	0	issue	"letsencrypt.org"
+supersecure.anwar-haidari.sb.uclllabs.be.	IN	CAA	0	issue	"letsencrypt.org"
 
 ; Records
 ns.anwar-haidari.sb.uclllabs.be.	IN	A	193.191.177.133
