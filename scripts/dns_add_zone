@@ -1,7 +1,8 @@
 #! /bin/bash
 
+#if first entered value is zero print out error string
 if [ -z "$1" ]; then
-printf "Enter a valid string"
+printf "Enter a string value"
 else
 echo "\$TTL	300
 @	IN	SOA	ns.anwar-haidari.sb.uclllabs.be $1.anwar-haidari.sb.uclllabs.be.(
@@ -16,6 +17,7 @@ echo "\$TTL	300
 ns	IN	A	193.191.177.133
 @	IN	A	193.191.177.133" > /etc/bind/zones/$1.anwar-haidari.sb.uclllabs.be
 
+#All zones made by script should be written to named.conf.mrt-zones for easy .gitignore
 echo "
 zone \"$1.anwar-haidari.sb.uclllabs.be\"{
 	type master;

@@ -7,7 +7,11 @@ if [ -z "$SUBDOMAIN" ];
 then
 	echo "Enter correct domain name"
 else
+	mkdir /var/www/html/$SUBDOMAIN
+        touch /var/www/html/$SUBDOMAIN/index.html
+        echo 'welcome '$SUBDOMAIN >> /var/www/html/$SUBDOMAIN/index.html
 	touch /etc/apache2/sites-available/$SUBDOMAIN.conf
+
 	echo  "<VirtualHost *:80>
 		ServerAdmin webmaster@localhost
 		ServerName $1
@@ -15,10 +19,6 @@ else
 		ErrorLog \${APACHE_LOG_DIR}/$SUBDOMAIN.log
 		CustomLog \${APACHE_LOG_DIR}/$SUBDOMAIN.log  combined
 	</VirtualHost>" >> /etc/apache2/sites-available/$SUBDOMAIN.conf
-
-	mkdir /var/www/html/$SUBDOMAIN
-	touch /var/www/html/$SUBDOMAIN/index.html
-	echo 'welcome '$SUBDOMAIN >> /var/www/html/$SUBDOMAIN/index.html
 
 	a2ensite $SUBDOMAIN.conf
 	echo "$SUBDOMAIN	IN	A	193.191.177.133" >> /etc/bind/zones/db.anwar-haidari.sb.uclllabs.be
