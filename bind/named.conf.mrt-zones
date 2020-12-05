@@ -1,0 +1,6 @@
+
+zone "testke.anwar-haidari.sb.uclllabs.be"{
+	type master;
+	file "/etc/bind/zones/testke.anwar-haidari.sb.uclllabs.be";
+	notify yes;
+};

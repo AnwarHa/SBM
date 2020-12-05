@@ -54,10 +54,11 @@ systemd-timesync:!::
 uuidd:!::
 tcpdump:!::
 systemd-coredump:!!::
-check:!::
+check:!::check
 incron:!::
 ntp:!::
 bind:!::
 mysql:!::
 dovecot:!::
 dovenull:!::
+ftp:!::

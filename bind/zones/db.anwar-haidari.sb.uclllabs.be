@@ -3,7 +3,7 @@
 ;
 $TTL	300
 @	IN	SOA	ns.anwar-haidari.sb.uclllabs.be. root.anwar-haidari.sb.uclllabs.be. (
-			 2020111049		; Serial
+			 2020111051		; Serial
 			 300		; Refresh
 			 300		; Retry
 			 300		; Expire
@@ -28,3 +28,5 @@ secure					IN	A	193.191.177.133
 supersecure				IN	A	193.191.177.133
 @					IN	MX	10 mx
 mx					IN	A	193.191.177.133
+testke	IN	NS	ns.anwar-haidari.sb.uclllabs.be.
+testsd	IN	A	193.191.177.133
